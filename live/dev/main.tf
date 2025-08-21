@@ -19,8 +19,8 @@ module "groups" {
 }
 
 module "role_assignment" {
-  source         = "./modules/role_assignment"
-  display_name   = "My-App"
+  source           = "../../modules/role_assignment"
+  display_name     = "My-App"
   owner_object_ids = ["<owner-object-id>"]
 }
 
