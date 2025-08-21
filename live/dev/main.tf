@@ -19,15 +19,9 @@ module "groups" {
 }
 
 module "role_assignment" {
-  source = "../../modules/role_assignment"
-
-  assignments = [
-    {
-      principal_id = module.groups.group_object_ids["app-owners"]
-      app_id       = module.app.app_id          # from output
-      app_role_id  = module.app.app_role_ids["Admin"]   # example role name
-    }
-  ]
+  source         = "./modules/role_assignment"
+  display_name   = "My-App"
+  owner_object_ids = ["<owner-object-id>"]
 }
 
 
