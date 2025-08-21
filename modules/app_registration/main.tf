@@ -14,24 +14,15 @@ resource "azuread_application" "this" {
   }
 }
 
-# Service Principal must reference the application's "client_id"
 resource "azuread_service_principal" "this" {
   client_id = azuread_application.this.client_id
 }
 
-# App password (client secret)
+# Generate a client secret for the app
 resource "azuread_application_password" "client_secret" {
-  application_id   = azuread_application.this.id # <-- fixed, use "id" not object_id
-  display_name     = "client-secret"
-  value            = var.client_secret_value != "" ? var.client_secret_value : random_password.secret.result
-  end_date_relative = "8760h" # 1 year
-}
+  application_id = azuread_application.this.id
+  display_name   = "client-secret"
 
-resource "random_password" "secret" {
-  length           = 32
-  special          = true
-  override_special = "!@#"
-  keepers = {
-    always_generate = var.client_secret_value == ""
-  }
+  # expires in 1 year
+  end_date = timeadd(timestamp(), "8760h")
 }
