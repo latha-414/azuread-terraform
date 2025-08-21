@@ -1,0 +1,30 @@
+provider "azuread" {}
+
+module "users" {
+  source = "../../modules/user"
+  users  = var.users
+}
+
+module "app" {
+  source           = "../../modules/app_registration"
+  display_name     = var.app_name
+  owner_object_ids = values(module.users.user_object_ids)
+}
+
+module "groups" {
+  source          = "../../modules/group"
+  groups          = var.groups
+  user_object_ids  = module.users.user_object_ids
+  memberships      = var.group_memberships
+}
+
+module "role_assignment" {
+  source = "../../modules/role_assignment"
+  assignments = [
+    {
+      principal_id = module.groups.group_object_ids["app-owners"]
+      app_id       = module.app.app_id
+      app_role_id  = azuread_application.app_role_id
+    }
+  ]
+}
