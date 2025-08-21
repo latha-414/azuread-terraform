@@ -20,11 +20,13 @@ module "groups" {
 
 module "role_assignment" {
   source = "../../modules/role_assignment"
+
   assignments = [
     {
       principal_id = module.groups.group_object_ids["app-owners"]
       app_id       = module.app.app_id
-      app_role_id  = azuread_application.app_role_id
+      app_role_id  = module.app.app_role_id
     }
   ]
 }
+
