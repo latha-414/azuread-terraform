@@ -1,3 +1,11 @@
-output "role_assignment_ids" {
-  value = [for r in azuread_app_role_assignment.this : r.id]
+output "application_id" {
+  value = azuread_application.this.id
+}
+
+output "app_role_ids" {
+  value = azuread_application.this.api[0].oauth2_permission_scope[*].id
+}
+
+output "service_principal_id" {
+  value = azuread_service_principal.this.id
 }
