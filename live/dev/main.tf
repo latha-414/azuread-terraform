@@ -23,9 +23,9 @@ module "role_assignment" {
 
   assignments = [
     {
-      app_role_id          = module.app.app_role_ids["access_as_user"]  # from app_registration outputs
-      principal_object_id  = module.groups.group_object_ids["app-owners"]
-      resource_object_id   = module.app.service_principal_id
+      app_role_id         = module.app.app_role_ids["access_as_user"]
+      principal_object_id = module.groups.group_object_ids["app-owners"]
+      resource_object_id  = module.app.service_principal_id
     }
   ]
 }
