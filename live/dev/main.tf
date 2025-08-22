@@ -18,13 +18,18 @@ module "groups" {
   memberships      = var.group_memberships
 }
 
-resource "azuread_app_role_assignment" "this" {
-  for_each = { for a in var.assignments : "${a.principal_id}-${a.resource_id}" => a }
+module "role_assignment" {
+  source = "../../modules/role_assignment"
 
-  app_role_id  = each.value.app_role_id
-  principal_id = each.value.principal_id
-  resource_id  = each.value.resource_id
+  assignments = [
+    {
+      app_role_id         = module.app.app_role_ids["Reader"]
+      principal_object_id = module.groups.group_object_ids["app-owners"]
+      resource_object_id  = module.app.service_principal_id
+    }
+  ]
 }
+
 
 
 
