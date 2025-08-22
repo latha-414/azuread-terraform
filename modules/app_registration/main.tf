@@ -15,14 +15,11 @@ resource "azuread_application" "this" {
 }
 
 resource "azuread_service_principal" "this" {
-  client_id = azuread_application.this.client_id
+  application_id = azuread_application.this.application_id
 }
 
-# Generate a client secret for the app
 resource "azuread_application_password" "client_secret" {
-  application_id = azuread_application.this.id
+  application_id = azuread_application.this.application_id
   display_name   = "client-secret"
-
-  # expires in 1 year
-  end_date = timeadd(timestamp(), "8760h")
+  end_date       = timeadd(timestamp(), "8760h")
 }
