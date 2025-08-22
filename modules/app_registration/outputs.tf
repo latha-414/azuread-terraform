@@ -7,7 +7,6 @@ output "service_principal_id" {
 }
 
 output "app_role_ids" {
-  description = "Map of app role values to IDs"
   value = {
     access_as_user = azuread_app_role.access_as_user.id
   }
