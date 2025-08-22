@@ -3,7 +3,7 @@ output "application_id" {
 }
 
 output "service_principal_id" {
-  value = azuread_service_principal.this.id
+  value = azuread_service_principal.this.object_id
 }
 
 output "client_secret" {
