@@ -1,31 +1,26 @@
 provider "azuread" {}
 
-module "users" {
-  source = "../../modules/user"
-  users  = var.users
+module "app_registration" {
+  source       = "../../modules/app_registration"
+  display_name = var.app_display_name
 }
 
-module "app" {
-  source           = "../../modules/app_registration"
-  display_name     = var.app_name
-  owner_object_ids = values(module.users.user_object_ids)
+module "user" {
+  source              = "../../modules/user"
+  user_principal_name = var.user_principal_name
+  display_name        = "Dev User"
+  mail_nickname       = "devuser"
+  password            = var.user_password
 }
 
-module "groups" {
-  source           = "../../modules/group"
-  groups           = var.groups
-  user_object_ids  = module.users.user_object_ids
-  memberships      = var.group_memberships
+module "group" {
+  source       = "../../modules/group"
+  display_name = var.group_name
 }
 
 module "role_assignment" {
-  source = "../../modules/role_assignment"
-
-  assignments = [
-    {
-      app_role_id         = module.app.app_role_ids["access_as_user"]
-      principal_object_id = module.groups.group_object_ids["app-owners"]
-      resource_object_id  = module.app.service_principal_id
-    }
-  ]
+  source             = "../../modules/role_assignment"
+  principal_object_id = module.user.user_id
+  resource_object_id  = module.app_registration.client_id
+  app_role_id         = "00000000-0000-0000-0000-000000000000" # Replace with actual App Role ID
 }
