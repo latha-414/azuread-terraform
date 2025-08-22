@@ -21,6 +21,6 @@ module "group" {
 module "role_assignment" {
   source             = "../../modules/role_assignment"
   principal_object_id = module.user.user_id
-  resource_object_id  = module.app_registration.client_id
+  resource_object_id  = module.app_registration.application_id
   app_role_id         = "00000000-0000-0000-0000-000000000000" # Replace with actual App Role ID
 }
