@@ -18,6 +18,12 @@ module "group" {
   display_name = var.group_name
 }
 
+module "group_membership" {
+  source           = "../../modules/group_membership"
+  group_object_id  = module.group.group_id
+  member_object_id = module.user.user_id
+}
+
 module "role_assignment" {
   source             = "../../modules/role_assignment"
   principal_object_id = module.user.user_id
