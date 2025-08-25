@@ -10,3 +10,8 @@ output "service_principal_secret" {
   value     = azuread_application_password.app_sp_password.value
   sensitive = true
 }
+
+output "app_sp_password" {
+  value     = azuread_application_password.app_sp_password.value
+  sensitive = true
+}
