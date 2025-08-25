@@ -1,3 +1,3 @@
-output "user_id" {
-  value = azuread_user.this.object_id
+output "user_object_id" {
+  value = azuread_user.user.object_id
 }
