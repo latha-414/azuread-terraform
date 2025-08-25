@@ -12,18 +12,17 @@ resource "azurerm_key_vault" "this" {
   purge_protection_enabled    = false
 
   access_policy {
-    tenant_id = var.tenant_id
-    object_id = data.azuread_client_config.current.object_id
-    key_permissions = [
-      "get",
-      "list",
-    ]
-    secret_permissions = [
-      "get",
-      "list",
-      "set",
-    ]
-  }
+  tenant_id = var.tenant_id
+  object_id = data.azuread_client_config.current.object_id
+  key_permissions = [
+    "Get",
+    "List",
+  ]
+  secret_permissions = [
+    "Get",
+    "List",
+    "Set",
+  ]
 }
 
 data "azuread_client_config" "current" {}
