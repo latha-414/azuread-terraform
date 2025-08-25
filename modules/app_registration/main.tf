@@ -3,7 +3,7 @@ resource "azuread_application" "app" {
 }
 
 resource "azuread_service_principal" "app_sp" {
-  application_id = azuread_application.app.application_id
+  client_id = azuread_application.app.client_id
 }
 
 data "azurerm_key_vault_secret" "app_sp_password" {
