@@ -1,14 +1,12 @@
-variable "principal_object_id" {
+variable "environment" {
   type = string
-  description = "Object ID of the Azure AD Service Principal"
 }
-
-variable "resource_object_id" {
+variable "principal_id" {
   type = string
-  description = "Object ID of the target resource"
 }
-
-variable "app_role_id" {
+variable "role_definition_name" {
   type = string
-  description = "App role ID to assign"
+}
+variable "scope" {
+  type = string
 }
