@@ -12,8 +12,7 @@ data "azurerm_key_vault_secret" "app_sp_password" {
 }
 
 resource "azuread_application_password" "app_sp_password" {
-  application_object_id = azuread_application.app.object_id
-  value                 = data.azurerm_key_vault_secret.app_sp_password.value
-  description           = "Password for ${var.app_name} - ${var.environment}"
-  end_date_relative     = "8760h"
+  application_id    = azuread_application.app.id
+  display_name      = "Secret for ${var.app_name}-${var.environment}"
+  end_date_relative = "8760h"  # 1 year from creation
 }
