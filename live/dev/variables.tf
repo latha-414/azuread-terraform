@@ -1,4 +1,11 @@
-variable "app_display_name" { type = string }
-variable "user_principal_name" { type = string }
-variable "user_password" { type = string }
-variable "group_name" { type = string }
+variable "environment" {
+  description = "Environment name"
+  type        = string
+  default     = "dev"
+}
+
+variable "location" {
+  description = "Azure location"
+  type        = string
+  default     = "eastus"
+}
