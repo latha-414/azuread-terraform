@@ -13,6 +13,12 @@ provider "azurerm" {
 
 provider "azuread" {}
 
+module "resource_group" {
+  source   = "../../modules/resource_group"
+  name     = "my-resource-group"
+  location = var.location
+}
+
 module "key_vault" {
   source              = "../../modules/key_vault"
   environment         = var.environment
