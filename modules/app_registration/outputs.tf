@@ -7,5 +7,5 @@ output "application_id" {
 }
 
 output "admin_app_role_id" {
-  value = azuread_application.this.app_roles[0].id
+  value = azuread_application.this.app_role[0].id
 }
