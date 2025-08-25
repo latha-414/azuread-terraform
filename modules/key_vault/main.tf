@@ -5,7 +5,10 @@ resource "azurerm_key_vault" "this" {
   tenant_id                   = var.tenant_id
   sku_name                   = "standard"
 
-  soft_delete_enabled         = true
+  # soft_delete_enabled removed
+
+  # Optional
+  soft_delete_retention_days  = 7
   purge_protection_enabled    = false
 
   access_policy {
@@ -23,5 +26,4 @@ resource "azurerm_key_vault" "this" {
   }
 }
 
-# Required data source to get current Azure AD user
 data "azuread_client_config" "current" {}
