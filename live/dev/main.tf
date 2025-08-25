@@ -27,8 +27,7 @@ module "group_membership" {
 module "role_assignment" {
   source              = "../../modules/role_assignment"
   principal_object_id = module.user.user_id
-  resource_object_id  = module.application.app_id
-  app_role_id         = module.application.app_role_id
+  resource_object_id  = module.app_registration.service_principal_id
 }
 
 
