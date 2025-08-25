@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.0"  # specify an appropriate version constraint
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
 provider "azuread" {}
 
 module "key_vault" {
