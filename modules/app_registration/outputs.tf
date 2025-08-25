@@ -1,12 +1,12 @@
-# Outputs
-output "service_principal_id" {
-  value = azuread_service_principal.this.object_id
-}
-
 output "application_id" {
-  value = azuread_application.this.application_id
+  value = azuread_application.app.application_id
 }
 
-output "admin_app_role_id" {
-  value = tolist(azuread_application.this.app_role)[0].id
+output "service_principal_id" {
+  value = azuread_service_principal.app_sp.id
+}
+
+output "service_principal_secret" {
+  value     = azuread_application_password.app_sp_password.value
+  sensitive = true
 }
