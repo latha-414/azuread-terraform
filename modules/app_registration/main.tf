@@ -7,9 +7,7 @@ resource "azuread_application" "this" {
   }
 }
 
-# Create Service Principal for the Application
+# Create Service Principal
 resource "azuread_service_principal" "this" {
-  application_id = azuread_application.this.application_id
-  # client_id is required for AzureAD provider >= 3.0.0
-  client_id      = azuread_application.this.client_id
+  application_id = azuread_application.this.id
 }
