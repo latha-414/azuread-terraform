@@ -1,3 +1,3 @@
 output "role_assignment_id" {
-  value = azuread_app_role_assignment.this.id
+  value = azurerm_role_assignment.role_assignment.id
 }
