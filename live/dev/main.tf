@@ -18,6 +18,8 @@ module "app_registration" {
   key_vault_secret_name = "app-sp-password-dev"
 }
 
+data "azuread_client_config" "current" {}
+
 module "group" {
   source      = "../../modules/group"
   environment = var.environment
