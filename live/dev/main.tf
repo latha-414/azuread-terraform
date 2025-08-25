@@ -28,7 +28,8 @@ module "role_assignment" {
   source              = "../../modules/role_assignment"
   principal_object_id = module.user.user_id
   resource_object_id  = module.app_registration.service_principal_id
-  app_role_id         = module.app_registration.admin_app_role_id  # automatic
+  app_role_id         = module.app_registration.admin_app_role_id
 }
+
 
 
