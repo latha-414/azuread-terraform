@@ -50,7 +50,8 @@ module "user" {
   source      = "../../modules/user"
   environment = var.environment
   location    = var.location
-  user_principal_name = "user1@domain.com"
+  user_principal_name = var.user_principal_name
+  password              = var.user_password
   display_name        = "User One"
 }
 
