@@ -7,7 +7,7 @@ resource "azuread_application" "this" {
   }
 }
 
-# Create Service Principal
+# Create Service Principal for the Application
 resource "azuread_service_principal" "this" {
-  application_id = azuread_application.this.id
+  client_id = azuread_application.this.application_id
 }
