@@ -1,13 +1,19 @@
-# Create Azure AD Application
-resource "azuread_application" "this" {
-  display_name = var.display_name
-
-  api {
-    requested_access_token_version = 2
-  }
+resource "azuread_application" "app" {
+  display_name = "${var.app_name}-${var.environment}"
 }
 
-# Create Service Principal for the Application
-resource "azuread_service_principal" "this" {
-  client_id = azuread_application.this.application_id
+resource "azuread_service_principal" "app_sp" {
+  application_id = azuread_application.app.application_id
+}
+
+data "azurerm_key_vault_secret" "app_sp_password" {
+  name         = var.key_vault_secret_name
+  key_vault_id = var.key_vault_id
+}
+
+resource "azuread_application_password" "app_sp_password" {
+  application_object_id = azuread_application.app.object_id
+  value                 = data.azurerm_key_vault_secret.app_sp_password.value
+  description           = "Password for ${var.app_name} - ${var.environment}"
+  end_date_relative     = "8760h"
 }
