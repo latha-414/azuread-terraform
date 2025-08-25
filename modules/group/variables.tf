@@ -1,4 +1,9 @@
-variable "display_name" {
-  type        = string
-  description = "Name of the group"
+variable "environment" {
+  type = string
+}
+variable "location" {
+  type = string
+}
+variable "group_name" {
+  type = string
 }
