@@ -1,5 +1,4 @@
-resource "azuread_group" "this" {
-  display_name     = var.display_name
-  mail_enabled     = false
+resource "azuread_group" "group" {
+  display_name = "${var.group_name}-${var.environment}"
   security_enabled = true
 }
