@@ -4,7 +4,7 @@ output "service_principal_id" {
 }
 
 output "application_id" {
-  value = azuread_application.this.id
+  value = azuread_application.this.application_id
 }
 
 output "admin_app_role_id" {
