@@ -61,11 +61,12 @@ module "group_membership" {
   group_object_id = module.group.group_object_id
 }
 
-module "role_assignment" {
-  source            = "../../modules/role_assignment"
-  environment       = var.environment
-  principal_id      = module.user.user_object_id
-  role_definition_name = "Contributor"
-  scope             = "/subscriptions/your-subscription-id"
-}
+data "azurerm_subscription" "current" {}
 
+module "role_assignment" {
+  source              = "../../modules/role_assignment"
+  environment         = var.environment
+  principal_id        = module.user.user_object_id
+  role_definition_name = "Contributor"
+  scope               = data.azurerm_subscription.current.id
+}
