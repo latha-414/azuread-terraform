@@ -49,7 +49,7 @@ module "group" {
 module "user" {
   source      = "../../modules/user"
   user_principal_name = var.user_principal_name
-  user_password       = var.user_password
+  password       = var.user_password
   mail_nickname       = "user1"  # You should also provide mail_nickname here if required
   display_name        = "User One"
 }
