@@ -19,7 +19,7 @@ resource "azurerm_key_vault_secret" "app_sp_password_secret" {
   depends_on   = [azuread_application_password.app_sp_password]
 }
 
-data "azurerm_key_vault_secret" "app_sp_password" {
-  name         = var.key_vault_secret_name
-  key_vault_id = var.key_vault_id
-}
+#data "azurerm_key_vault_secret" "app_sp_password" {
+ # name         = var.key_vault_secret_name
+  #key_vault_id = var.key_vault_id
+#}
