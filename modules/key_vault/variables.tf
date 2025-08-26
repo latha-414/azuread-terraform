@@ -17,3 +17,8 @@ variable "key_vault_name" {
 variable "tenant_id" {
   type = string
 }
+
+variable "key_vault_base_name" {
+  type        = string
+  description = "Base name of the Key Vault"
+}
