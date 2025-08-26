@@ -48,10 +48,9 @@ module "group" {
 
 module "user" {
   source      = "../../modules/user"
-  environment = var.environment
-  location    = var.location
   user_principal_name = var.user_principal_name
-  password              = var.user_password
+  user_password              = var.user_password
+  mail_nickname       = "user1"  # You should also provide mail_nickname here if required
   display_name        = "User One"
 }
 
