@@ -3,7 +3,7 @@ resource "random_id" "unique_hex" {
 }
 
 locals {
-  key_vault_name = "${var.key_vault_base_name}-${var.environment}-${substr(random_id.unique_hex.hex, 0, 6)}"
+  key_vault_name = "${var.key_vault_name}-${var.environment}-${substr(random_id.unique_hex.hex, 0, 6)}"
 }
 
 resource "azurerm_key_vault" "this" {
