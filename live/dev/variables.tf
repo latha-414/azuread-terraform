@@ -1,11 +1,16 @@
 variable "environment" {
-  description = "Environment name"
-  type        = string
-  default     = "dev"
+  type = string
 }
 
 variable "location" {
-  description = "Azure location"
-  type        = string
-  default     = "eastus"
+  type = string
+}
+
+variable "user_principal_name" {
+  type = string
+}
+
+variable "password" {
+  type      = string
+  sensitive = true
 }
