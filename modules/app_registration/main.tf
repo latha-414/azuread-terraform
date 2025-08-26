@@ -13,9 +13,10 @@ resource "azuread_application_password" "app_sp_password" {
 }
 
 resource "azurerm_key_vault_secret" "app_sp_password_secret" {
-  name         = var.key_vault_secret_name  # e.g., "app-sp-password-dev"
+  name         = var.key_vault_secret_name
   value        = azuread_application_password.app_sp_password.value
   key_vault_id = var.key_vault_id
+  depends_on   = [azuread_application_password.app_sp_password]
 }
 
 data "azurerm_key_vault_secret" "app_sp_password" {
