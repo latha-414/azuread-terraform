@@ -5,13 +5,10 @@ resource "random_id" "unique_hex" {
 }
 
 locals {
-  # Limit base name and environment to shorter versions to keep total length <= 24
   short_base_name = substr(var.key_vault_name, 0, 8)
   short_env       = substr(var.environment, 0, 4)
-  # Compose key vault name with dashes and a random suffix
-  key_vault_name = "${short_base_name}-${short_env}-${substr(random_id.unique_hex.hex, 0, 6)}"
+  key_vault_name  = "${local.short_base_name}-${local.short_env}-${substr(random_id.unique_hex.hex, 0, 6)}"
 }
-
 
 resource "azurerm_key_vault" "this" {
   name                = local.key_vault_name
