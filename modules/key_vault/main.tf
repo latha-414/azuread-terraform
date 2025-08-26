@@ -1,3 +1,5 @@
+data "azuread_client_config" "current" {}
+
 resource "random_id" "unique_hex" {
   byte_length = 4
 }
