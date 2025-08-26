@@ -10,7 +10,7 @@ variable "resource_group_name" {
   type = string
 }
 
-variable "key_vault_name" {
+variable "key_vault_base_name" {
   type = string
 }
 
