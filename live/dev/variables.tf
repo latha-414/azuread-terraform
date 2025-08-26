@@ -10,7 +10,7 @@ variable "user_principal_name" {
   type = string
 }
 
-variable "password" {
+variable "user_password" {
   type      = string
   sensitive = true
 }
